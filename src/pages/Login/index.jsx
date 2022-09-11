@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import styles from "./Login.module.scss";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAuth, logout, selectIsAuth} from "../../redux/slices/auth";
+import {fetchLogin, logout, selectIsAuth} from "../../redux/slices/auth";
 import {Navigate} from "react-router-dom";
 
 export const Login = () => {
@@ -24,8 +24,16 @@ export const Login = () => {
         mode: 'onChange'
     })
 
-    const onSubmit = (values) => {
-       dispatch(fetchAuth(values))
+    const onSubmit = async (values) => {
+        const data = await dispatch(fetchLogin(values))
+
+        if (!data.payload) {
+            alert('Не удалось авторизоваться')
+        }
+
+        if ("token" in data.payload) {
+            window.localStorage.setItem('token', data.payload.token)
+        }
     }
 
     console.log(isValid, errors)

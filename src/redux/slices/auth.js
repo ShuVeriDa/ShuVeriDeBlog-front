@@ -1,8 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authAPI,} from "../../api/postsAPI";
 
-export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params) => {
+export const fetchLogin = createAsyncThunk('auth/fetchLogin', async (params) => {
     const res = await authAPI.login(params)
+    return res.data
+})
+
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
+    const res = await authAPI.me()
     return res.data
 })
 
@@ -22,15 +27,27 @@ const authSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(fetchAuth.pending, (state, action) => {
+            .addCase(fetchLogin.pending, (state, action) => {
                 state.status = 'loading'
                 state.data = null
             })
-            .addCase(fetchAuth.fulfilled, (state, action) => {
+            .addCase(fetchLogin.fulfilled, (state, action) => {
                 state.status = 'loaded'
                 state.data = action.payload
             })
-            .addCase(fetchAuth.rejected, (state, action) => {
+            .addCase(fetchLogin.rejected, (state, action) => {
+                state.status = 'error'
+                state.data = null
+            })
+            .addCase(fetchAuthMe.pending, (state, action) => {
+                state.status = 'loading'
+                state.data = null
+            })
+            .addCase(fetchAuthMe.fulfilled, (state, action) => {
+                state.status = 'loaded'
+                state.data = action.payload
+            })
+            .addCase(fetchAuthMe.rejected, (state, action) => {
                 state.status = 'error'
                 state.data = null
             })
