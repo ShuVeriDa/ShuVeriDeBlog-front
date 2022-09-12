@@ -20,6 +20,12 @@ export const postsAPI = {
     getPostsId: (id) => {
         return instance.get(`posts/${id}`)
     },
+    formDataPost: (formData) => {
+        return instance.post('upload', formData)
+    },
+    createPost: (fields) => {
+        return instance.post('posts', fields)
+    }
 }
 
 export const authAPI = {
