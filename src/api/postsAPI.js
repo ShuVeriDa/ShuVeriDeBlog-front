@@ -25,6 +25,9 @@ export const postsAPI = {
     },
     createPost: (fields) => {
         return instance.post('posts', fields)
+    },
+    deletePost: (id) => {
+        return instance.delete(`posts/${id}`)
     }
 }
 

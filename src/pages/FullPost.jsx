@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
-import { Post } from "../components/Post";
-import { Index } from "../components/AddComment";
+import { Post } from "../components/Post/Post";
+import { AddComponent } from "../components/AddComment/AddComponent";
 import { CommentsBlock } from "../components/CommentsBlock";
 import {useParams} from "react-router-dom";
 import {postsAPI} from "../api/postsAPI";
@@ -36,7 +36,7 @@ export const FullPost = () => {
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={`http://localhost:4444${data.imageUrl}`}
+        imageUrl={data.imageUrl ?`http://localhost:4444${data.imageUrl}` : ""}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
@@ -65,7 +65,7 @@ export const FullPost = () => {
         ]}
         isLoading={false}
       >
-        <Index />
+        <AddComponent />
       </CommentsBlock>
     </>
   );

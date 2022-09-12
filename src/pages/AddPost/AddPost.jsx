@@ -50,7 +50,7 @@ export const AddPost = () => {
                 title,
                 imageUrl,
                 text,
-                tags: tags.split(",")
+                tags
             }
             const res = await postsAPI.createPost(fields)
             const id = res.data._id
