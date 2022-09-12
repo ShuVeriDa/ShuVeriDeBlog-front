@@ -26,7 +26,10 @@ export const authAPI = {
     login: (params) => {
         return instance.post('auth/login', params)
     },
+    register: (params) => {
+        return instance.post('auth/register', params)
+    },
     me: () => {
         return instance.get('auth/me')
-    }
+    },
 }

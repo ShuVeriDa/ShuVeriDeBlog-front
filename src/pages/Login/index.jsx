@@ -37,40 +37,39 @@ export const Login = () => {
     }
 
     console.log(isValid, errors)
-    console.log("isAuth: ",  isAuth)
+    console.log("isAuth: ", isAuth)
 
 
     if (isAuth) {
-        return <Navigate to={'/'} />
+        return <Navigate to={'/'}/>
     }
-  return (
-    <Paper classes={{ root: styles.root }}>
-      <Typography classes={{ root: styles.title }} variant="h5">
-        Вход в аккаунт
-      </Typography>
+    return (
+        <Paper classes={{root: styles.root}}>
+            <Typography classes={{root: styles.title}} variant="h5">
+                Вход в аккаунт
+            </Typography>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-                className={styles.field}
-                label="E-Mail"
-                type='email'
-                error={Boolean(errors.email?.message)}
-                helperText={errors.email?.message}
-                {...register('email', {required: 'Укажите почту'})}
-                fullWidth
-            />
-            <TextField className={styles.field}
-                       label="Пароль"
-                       error={Boolean(errors.password?.message)}
-                       helperText={errors.password?.message}
-                       {...register('password', {required: 'Укажите пароль'})}
-                       fullWidth
-            />
-            <Button type={"submit"} size="large" variant="contained" fullWidth>
-                Войти
-            </Button>
-        </form>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField className={styles.field}
+                           label="E-Mail"
+                           type='email'
+                           error={Boolean(errors.email?.message)}
+                           helperText={errors.email?.message}
+                           {...register('email', {required: 'Укажите почту'})}
+                           fullWidth
+                />
+                <TextField className={styles.field}
+                           label="Пароль"
+                           error={Boolean(errors.password?.message)}
+                           helperText={errors.password?.message}
+                           {...register('password', {required: 'Укажите пароль'})}
+                           fullWidth
+                />
+                <Button type={"submit"} size="large" variant="contained" disabled={!isValid} fullWidth>
+                    Войти
+                </Button>
+            </form>
 
-    </Paper>
-  );
+        </Paper>
+    );
 };
