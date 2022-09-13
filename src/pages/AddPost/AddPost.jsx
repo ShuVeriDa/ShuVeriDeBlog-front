@@ -6,7 +6,7 @@ import SimpleMDE from 'react-simplemde-editor';
 
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {selectIsAuth} from "../../redux/slices/auth";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {postsAPI} from "../../api/postsAPI";
@@ -114,7 +114,7 @@ export const AddPost = () => {
                     <Button variant="contained" color="error" onClick={onClickRemoveImage}>
                         Удалить
                     </Button>
-                    <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded"/>
+                    <img className={styles.image} src={`${process.env.REACT_APP_API_URL}${imageUrl}`} alt="Uploaded"/>
                 </>
             )}
             <br/>
