@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout, selectIsAuth} from "../../redux/slices/auth";
 
+
 export const Header = () => {
   const dispatch = useDispatch()
   const isAuth = useSelector(selectIsAuth)
